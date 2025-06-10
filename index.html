@@ -125,6 +125,36 @@
       color: #4da8da;
     }
 
+    .game-section {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #1c2e4a;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    }
+
+    .game-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2em;
+      color: #a3d8ff;
+      margin: 0 0 10px;
+    }
+
+    #gameCanvas {
+      background-color: #2a4066; /* Ocean blue canvas */
+      border: 3px solid #4da8da;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    #score {
+      font-size: 1.5em;
+      color: #b0e0e6;
+      margin-top: 10px;
+    }
+
     footer {
       background-color: #08101a; /* Near-black ocean floor */
       color: #c7e3ff;
@@ -163,9 +193,14 @@
         height: 180px;
       }
 
-      .message {
+      .message, .game-section {
         padding: 20px;
         font-size: 1em;
+      }
+
+      #gameCanvas {
+        width: 100%;
+        height: 300px;
       }
     }
   </style>
@@ -183,6 +218,13 @@
     <p>Hania, our majestic Whale Queen, you make every moment a tidal wave of fun! Your heart is as big as the ocean, and your spirit soars like a breaching humpback. Here’s to a birthday that’s larger-than-life, filled with laughter, love, and whale-sized adventures!</p>
   </section>
 
+  <section class="game-section">
+    <h2>Catch Hania the Whale!</h2>
+    <p>Click Hania the Whale to score points and celebrate her big day!</p>
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+    <div id="score">Score: 0</div>
+  </section>
+
   <section class="gallery">
     <!-- Replace these placeholder images with your own -->
     <img src="1.jpg" alt="Hania the Whale Picture 1">
@@ -193,11 +235,65 @@
   </section>
 
   <footer>
-    <p>For Hania the Whale’s Epic Birthday Splash! <i class="fas fa-fish whale-icon"></i></p>
+    <p>Made with <i class="fas fa-heart"></i> for Hania the Whale’s Epic Birthday Splash! <i class="fas fa-fish whale-icon"></i></p>
   </footer>
 
   <script>
-    // Add interactivity for gallery images
+    // Game: Catch Hania the Whale
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const scoreDisplay = document.getElementById('score');
+    let score = 0;
+    let whale = { x: 300, y: 200, size: 60, speed: 3 };
+
+    // Simplified whale shape (rectangle for hitbox, drawn as a whale)
+    function drawWhale() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#4da8da';
+      ctx.beginPath();
+      ctx.ellipse(whale.x, whale.y, whale.size / 2, whale.size / 4, 0, 0, 2 * Math.PI); // Body
+      ctx.moveTo(whale.x + whale.size / 2, whale.y);
+      ctx.lineTo(whale.x + whale.size, whale.y - whale.size / 8); // Tail fin top
+      ctx.lineTo(whale.x + whale.size, whale.y + whale.size / 8); // Tail fin bottom
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function moveWhale() {
+      whale.x += whale.speed * (Math.random() - 0.5) * 10;
+      whale.y += whale.speed * (Math.random() - 0.5) * 10;
+
+      // Keep whale in bounds
+      whale.x = Math.max(whale.size / 2, Math.min(canvas.width - whale.size / 2, whale.x));
+      whale.y = Math.max(whale.size / 4, Math.min(canvas.height - whale.size / 4, whale.y));
+      drawWhale();
+    }
+
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width; // Adjust for canvas scaling
+      const scaleY = canvas.height / rect.height;
+      const clickX = (e.clientX - rect.left) * scaleX;
+      const clickY = (e.clientY - rect.top) * scaleY;
+
+      // Check if click is within whale's hitbox (ellipse approximation)
+      const dx = clickX - whale.x;
+      const dy = clickY - whale.y;
+      const hit = (dx * dx) / (whale.size / 2 * whale.size / 2) + (dy * dy) / (whale.size / 4 * whale.size / 4) <= 1;
+      if (hit) {
+        score++;
+        scoreDisplay.textContent = `Score: ${score}`;
+        whale.speed += 0.2; // Increase difficulty
+        whale.x = Math.random() * (canvas.width - whale.size) + whale.size / 2;
+        whale.y = Math.random() * (canvas.height - whale.size) + whale.size / 2;
+        drawWhale();
+      }
+    });
+
+    drawWhale(); // Initial draw
+    setInterval(moveWhale, 50);
+
+    // Gallery interactivity
     document.querySelectorAll('.gallery img').forEach(img => {
       img.addEventListener('click', () => {
         alert('Dive into Hania’s full-size photo! (Add lightbox library for a better splash!)');
