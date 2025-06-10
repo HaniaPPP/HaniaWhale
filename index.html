@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Hania the Whale!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Bubblegum Sans', cursive;
+      background-color: #0d1b2a; /* Deep whale-ocean blue */
+      color: #c7e3ff; /* Soft blue glow for text */
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Wave animation background */
+    .wave-bg {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%231b3557" fill-opacity="0.8" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,181.3C672,181,768,139,864,117.3C960,96,1056,96,1152,106.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+      animation: wave 8s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes wave {
+      0% { background-position: 0 0; }
+      100% { background-position: 1440px 0; }
+    }
+
+    header {
+      background: url('https://images.unsplash.com/photo-1519606247872-045bb95ff826') no-repeat center center/cover;
+      padding: 70px 20px;
+      color: white;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+      position: relative;
+      border-bottom: 3px solid #4da8da; /* Whale-blue border */
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.5em;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #a3d8ff; /* Bright whale-blue */
+    }
+
+    .subtitle {
+      font-size: 1.8em;
+      margin: 15px 0;
+      font-family: 'Bubblegum Sans', cursive;
+      color: #b0e0e6; /* Powdery blue */
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 25px;
+      max-width: 1200px;
+      margin: 20px auto;
+      background-color: #152238; /* Deep sea backdrop */
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 5px solid #4da8da; /* Whale-blue frame */
+      transition: transform 0.4s, box-shadow 0.4s;
+      position: relative;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .gallery img::after {
+      content: '\f6d7'; /* Whale icon from Font Awesome */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #c7e3ff;
+      font-size: 1.2em;
+      opacity: 0.7;
+    }
+
+    .message {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 30px;
+      background-color: #1c2e4a; /* Dark whale-blue */
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+      font-size: 1.2em;
+      position: relative;
+    }
+
+    .message h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5em;
+      color: #a3d8ff;
+      margin-top: 0;
+    }
+
+    .whale-deco {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2em;
+      color: #4da8da;
+    }
+
+    footer {
+      background-color: #08101a; /* Near-black ocean floor */
+      color: #c7e3ff;
+      padding: 30px;
+      margin-top: 20px;
+      border-top: 3px solid #4da8da;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    .whale-icon {
+      font-size: 1.8em;
+      margin: 0 15px;
+      color: #a3d8ff;
+      animation: bob 2.5s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3em;
+      }
+
+      .subtitle {
+        font-size: 1.4em;
+      }
+
+      .gallery img {
+        height: 180px;
+      }
+
+      .message {
+        padding: 20px;
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wave-bg"></div>
+  <header>
+    <h1>Happy Birthday, Hania the Whale!</h1>
+    <p class="subtitle">The Biggest, Splashiest Star of the Sea! <i class="fas fa-water whale-icon"></i></p>
+  </header>
+
+  <section class="message">
+    <i class="fas fa-fish whale-deco"></i>
+    <h2>Swimming with Joy!</h2>
+    <p>Hania, our majestic Whale Queen, you make every moment a tidal wave of fun! Your heart is as big as the ocean, and your spirit soars like a breaching humpback. Here’s to a birthday that’s larger-than-life, filled with laughter, love, and whale-sized adventures!</p>
+  </section>
+
+  <section class="gallery">
+    <!-- Replace these placeholder images with your own -->
+    <img src="1.jpg" alt="Hania the Whale Picture 1">
+    <img src="2.jpg" alt="Hania the Whale Picture 2">
+    <img src="3.jpg" alt="Hania the Whale Picture 3">
+    <img src="4.jpg" alt="Hania the Whale Picture 4">
+    <!-- Add more <img> tags as needed -->
+  </section>
+
+  <footer>
+    <p>For Hania the Whale’s Epic Birthday Splash! <i class="fas fa-fish whale-icon"></i></p>
+  </footer>
+
+  <script>
+    // Add interactivity for gallery images
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        alert('Dive into Hania’s full-size photo! (Add lightbox library for a better splash!)');
+      });
+    });
+  </script>
+</body>
+</html>
